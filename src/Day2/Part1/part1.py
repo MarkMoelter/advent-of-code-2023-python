@@ -1,6 +1,9 @@
+import logging
 import math
 
 from Day2.Part1.game import Game
+
+logger = logging.getLogger(__name__)
 
 
 class Part1:
@@ -61,7 +64,7 @@ class Part1:
             game = Game(line)
             fewest = self.fewest_cubes_needed(game)
             mul = math.prod(fewest)
-            print(f"{idx + 1}: {fewest} = {mul}")
+            logger.debug(f"{idx + 1}: {fewest} = {mul}")
             total += mul
 
         return total

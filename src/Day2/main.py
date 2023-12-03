@@ -1,3 +1,5 @@
+import logging
+
 from Day2.Part1.part1 import Part1
 from read_file import read_input_file
 
@@ -11,4 +13,6 @@ def main():
 
 
 if __name__ == '__main__':
+    logging.basicConfig(level=logging.DEBUG)
+    logging.disable(logging.DEBUG)
     main()
