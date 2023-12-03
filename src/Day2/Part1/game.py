@@ -5,10 +5,10 @@ class Game:
     def __init__(self, input_string: str):
         self.input_string = input_string
         self.game_id = self._game_id()
-        self.largest_values = {
-            "red": self._max_color_count("red"),
-            "green": self._max_color_count("green"),
-            "blue": self._max_color_count("blue")
+        self.rgb_values: dict[str, list[int]] = {
+            "red": self._color_count_all_rounds("red"),
+            "green": self._color_count_all_rounds("green"),
+            "blue": self._color_count_all_rounds("blue")
         }
 
     def _game_id(self) -> int:
@@ -21,11 +21,11 @@ class Game:
         game_id_pattern = r"(?<=^Game )\d+(?=:)"
         return int(re.search(game_id_pattern, self.input_string).group())
 
-    def _max_color_count(self, color: str) -> int:
+    def _color_count_all_rounds(self, color: str) -> list[int]:
         """
-        Get the highest color value from the input string.
-        :param color: The color to get the highest value for.
-        :return: The highest color value
+        Get all values of a single color from the input string.
+        :param color: The color to search for
+        :return: The values for the color parameter.
         """
         pattern = rf"\d+(?= {color})"
-        return int(re.search(pattern, self.input_string).group())
+        return list(map(int, re.findall(pattern, self.input_string)))
