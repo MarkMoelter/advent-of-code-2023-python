@@ -12,8 +12,22 @@ class Part1:
         """
         Check if the game is possible.
         :param game: The game ot check.
-        :return: True if the game is possible
+        :return: True if the game is possible.
         """
         return (self.num_red >= game.largest_values["red"]
                 and self.num_green >= game.largest_values["green"]
                 and self.num_blue >= game.largest_values["blue"])
+
+    def add_game_ids_of_possible_games(self) -> int:
+        """
+        Add the ids of the possible games.
+        :return: The total adds.
+        """
+        total = 0
+        for line in self.input_list:
+            game = Game(line)
+            if self.is_game_possible(game):
+                total += game.game_id
+
+        return total
+
