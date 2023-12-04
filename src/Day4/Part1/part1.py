@@ -1,31 +1,26 @@
 import logging
-import re
+
+from Day4.Part1.card import Card
 
 logger = logging.getLogger(__name__)
 
 
 class Part1:
     def __init__(self, input_file: list[str]) -> None:
-        self.cards = input_file
+        self._input_file = input_file
+        self._cards = self.cards
 
-    @staticmethod
-    def get_winning_numbers(card: str) -> list[int]:
-        pattern = r"[ \d]+(?=\|)"
-        return list(map(int, re.search(pattern, card).group().split()))
-
-    @staticmethod
-    def get_playable_numbers(card: str) -> list[int]:
-        pattern = r"(?<=\|)[ \d]+"
-        return list(map(int, re.search(pattern, card).group().split()))
+    @property
+    def cards(self) -> list[Card]:
+        return [Card(card) for card in self._input_file]
 
     def puzzle_1(self) -> int:
         total = 0
-        for card in self.cards:
+        for card in self._cards:
             count = 0
-            for winning_num in self.get_winning_numbers(card):
-                for playable in self.get_playable_numbers(card):
+            for winning_num in card.winning_numbers:
+                for playable in card.playable_numbers:
                     if winning_num == playable:
-                        # logger.debug(winning_num)
                         count += 1
 
             if count > 0:
