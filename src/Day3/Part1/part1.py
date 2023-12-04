@@ -8,6 +8,7 @@ class Part1:
     def __init__(self, input_file: list[str]) -> None:
         self.input_file = input_file
         self._symbols = self.symbols
+        self._numbers = self.numbers
 
     @property
     def symbols(self) -> list[Symbol]:
@@ -38,12 +39,11 @@ class Part1:
         Get the sum of all the part numbers in the engine schematic.
         :return: The sum of the part numbers.
         """
-        return 0
-
-    def is_part_number(self, num: Number) -> bool:
-        """
-        Check if the number is a part number of the engine schematic.
-        :param num: The number to check.
-        :return: True if the number is a part number
-        """
-        return False
+        total = 0
+        for num in self._numbers:
+            for symbol in self._symbols:
+                near_symbol_vertically = num.y_pos - 1 <= symbol.y_pos <= num.y_pos + 1
+                near_symbol_horizontally = num.x_span[0] - 1 <= symbol.x_pos <= num.x_span[1] + 1
+                if near_symbol_horizontally and near_symbol_vertically:
+                    total += num.value
+        return total

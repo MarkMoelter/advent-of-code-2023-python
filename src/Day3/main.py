@@ -8,8 +8,10 @@ from read_file import read_input_file
 def main():
     # part 1
     input_file = read_input_file("input.txt")
-    pprint(Part1(input_file).symbols[0:10])
-    pprint(Part1(input_file).numbers[0:10])
+    p1 = Part1(input_file)
+    pprint(p1.symbols[0:10])
+    pprint(p1.numbers[0:10])
+    print(p1.puzzle_1())
     # part 2
 
 
