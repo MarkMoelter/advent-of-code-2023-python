@@ -76,5 +76,6 @@ class Part1:
                 if len(gear_nums) == 2:
                     total += math.prod(gear_nums)
                     logger.debug(gear_nums)
+                    break
 
         return total
