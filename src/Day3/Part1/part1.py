@@ -21,6 +21,18 @@ class Part1:
                 symbols.append(Symbol(match.group(), match.span()[0], y_pos))
         return symbols
 
+    @property
+    def numbers(self) -> list[Number]:
+        """
+        Get the numbers in the input file.
+        :return: A list of numbers.
+        """
+        numbers = []
+        for y_pos, line in enumerate(self.input_file):
+            for match in re.finditer(r"\d+", line):
+                numbers.append(Number(int(match.group()), (match.span()[0], match.span()[1] - 1), y_pos))
+        return numbers
+
     def puzzle_1(self) -> int:
         """
         Get the sum of all the part numbers in the engine schematic.
