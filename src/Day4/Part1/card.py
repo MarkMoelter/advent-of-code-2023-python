@@ -10,7 +10,8 @@ class Card:
 
     @property
     def card_id(self) -> int:
-        return 0
+        pattern = r"\d+(?=:)"
+        return int(re.search(pattern, self._card_string).group())
 
     @property
     def winning_numbers(self) -> list[int]:
