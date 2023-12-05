@@ -48,3 +48,29 @@ class Part2(Part1):
             self.cache[card.card_id] = count
 
         return count
+
+    def not_cached_puzzle_2(self) -> int:
+        total = 0
+        for card in self.cards:
+            logger.debug(f"Original card: {card.card_id}")
+            total += self.not_cached_get_number_of_cards_generated(card, 0)
+            logger.debug(f"Running total: {total}\n")
+
+        return total
+
+    def not_cached_get_number_of_cards_generated(self, card: Card, count: int) -> int:
+        """
+        Get the number of cards generated from the cards winnings
+        :param count: The running total.
+        :param card: The card.
+        :return: The number of cards generated from the cards winnings.
+        """
+        count += 1
+        logger.debug(f" -> ID: {card.card_id} -> {card.numbers_that_won} -> Count: {count}")
+        if len(card.numbers_that_won) == 0:
+            return count
+
+        for card2 in self.cards[card.card_id: card.card_id + len(card.numbers_that_won)]:
+            count = self.not_cached_get_number_of_cards_generated(card2, count)
+
+        return count

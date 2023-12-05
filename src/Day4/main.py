@@ -1,4 +1,6 @@
 import logging
+import timeit
+from statistics import mean
 
 from Day4.Part1.part1 import Part1
 from Day4.Part2.part2 import Part2
@@ -14,6 +16,19 @@ def main():
     input_file = read_input_file("test_input.txt")
     p2 = Part2(input_file)
     print(p2.puzzle_2())
+    print(p2.not_cached_puzzle_2())
+
+    print("Cached results")
+    times = timeit.repeat(lambda: p2.puzzle_2(), number=100)
+    print(f"Minimum execution time: {min(times)}")
+    print(f"Minimum execution time: {max(times)}")
+    print(f"Minimum execution time: {mean(times)}")
+
+    print("Not cached results")
+    times = timeit.repeat(lambda: p2.not_cached_puzzle_2(), number=100)
+    print(f"Minimum execution time: {min(times)}")
+    print(f"Minimum execution time: {max(times)}")
+    print(f"Minimum execution time: {mean(times)}")
 
 
 if __name__ == '__main__':
