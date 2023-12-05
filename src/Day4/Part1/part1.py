@@ -25,7 +25,3 @@ class Part1:
             logger.debug(total)
 
         return total
-
-    def puzzle_2(self):
-        total = 0
-        return total
