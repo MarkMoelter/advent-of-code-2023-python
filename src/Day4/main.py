@@ -12,26 +12,20 @@ def main():
     input_file = read_input_file("input.txt")
     p1 = Part1(input_file)
     # print(p1.puzzle_1())
+
     # part 2
-    input_file = read_input_file("test_input.txt")
+    # input_file = read_input_file("test_input.txt")
     p2 = Part2(input_file)
     print(p2.puzzle_2())
-    print(p2.not_cached_puzzle_2())
 
-    print("Cached results")
-    times = timeit.repeat(lambda: p2.puzzle_2(), number=100)
+    times = timeit.repeat(lambda: p2.puzzle_2(), number=10, repeat=10)
+    print("Time results")
     print(f"Minimum execution time: {min(times)}")
-    print(f"Minimum execution time: {max(times)}")
-    print(f"Minimum execution time: {mean(times)}")
-
-    print("Not cached results")
-    times = timeit.repeat(lambda: p2.not_cached_puzzle_2(), number=100)
-    print(f"Minimum execution time: {min(times)}")
-    print(f"Minimum execution time: {max(times)}")
-    print(f"Minimum execution time: {mean(times)}")
+    print(f"Maximum execution time: {max(times)}")
+    print(f"Average execution time: {mean(times)}")
 
 
 if __name__ == '__main__':
     logging.basicConfig(level=logging.DEBUG)
-    logging.disable(logging.DEBUG)
+    # logging.disable(logging.DEBUG)
     main()

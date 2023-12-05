@@ -14,10 +14,9 @@ class Part2(Part1):
     def puzzle_2(self) -> int:
         total = 0
         for card in self.cards:
-            logger.debug(f"Original card: {card.card_id}")
+            logger.info(f"Starting card: {card.card_id}")
             total += self.get_number_of_cards_generated(card)
-            logger.debug(f"Running total: {total}\n")
-            logger.debug(f"Final cache: {self.cache}")
+        logger.info(f"Final cache: {self.cache}")
 
         return total
 
