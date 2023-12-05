@@ -10,6 +10,9 @@ def main():
     p1 = Part1(input_file)
     print(p1.puzzle_1())
     # part 2
+    input_file = read_input_file("test_input.txt")
+    p2 = Part1(input_file)
+    print(p2.puzzle_2())
 
 
 if __name__ == '__main__':
