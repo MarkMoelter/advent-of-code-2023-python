@@ -17,12 +17,7 @@ class Part1:
     def puzzle_1(self) -> int:
         total = 0
         for card in self._cards:
-            count = 0
-            for winning_num in card.winning_numbers:
-                for playable in card.playable_numbers:
-                    if winning_num == playable:
-                        count += 1
-
+            count = len(card.numbers_that_won)
             if count > 0:
                 total += pow(2, count - 1)
             else:
