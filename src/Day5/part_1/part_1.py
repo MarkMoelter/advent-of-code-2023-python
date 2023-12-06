@@ -31,3 +31,14 @@ class Part1:
             if input_val in range(src, src + _range):
                 return input_val - src + dest
         return input_val
+
+    def solution(self) -> dict[int, int]:
+        """
+        Solution to the first problem
+        :return: The lowest location that corresponds to any of the initial seeds.
+        """
+        sol = {}
+        for seed in self._seeds:
+            sol[seed] = self.map_src_to_dest(seed, self.maps["seed_to_soil"])
+
+        return sol
