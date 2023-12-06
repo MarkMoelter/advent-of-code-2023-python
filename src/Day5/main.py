@@ -1,19 +1,18 @@
 import logging
 
-from read_file import read_file_lines
-from .part_1.part_1 import Part1
-from .part_2.part_2 import Part2
+from Day5.part_1.part_1 import Part1
+from read_file import read_file
 
 
 def main():
-    input_file = read_file_lines()
-    input_file = read_file_lines("test_input.txt")
+    input_file = read_file("test_input.txt")
 
     # part 1
     p1 = Part1(input_file)
+    print(p1.seeds)
 
     # part 2
-    p2 = Part2(input_file)
+    # p2 = Part2(input_file)
 
 
 if __name__ == '__main__':

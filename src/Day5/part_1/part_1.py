@@ -1,4 +1,5 @@
 import logging
+import re
 
 logger = logging.getLogger(__name__)
 
@@ -6,6 +7,17 @@ logger = logging.getLogger(__name__)
 class Part1:
     def __init__(self, input_file: str) -> None:
         self.input_file = input_file
+        self._seeds = self.seeds
+        self.maps: dict[str, list[tuple[int, int, int]]] = {}
+
+    @property
+    def seeds(self) -> list[int]:
+        """
+        Get the seeds from the input file.
+        :return: The list of seeds.
+        """
+        pattern = r"(?<=seeds: )[ \d]+"
+        return list(map(int, re.search(pattern, self.input_file).group().split()))
 
     @staticmethod
     def map_src_to_dest(input_val: int, transformation_map: list[tuple[int, int, int]]) -> int:
