@@ -1,13 +1,13 @@
 import logging
 
-from read_file import read_input_file
+from read_file import read_file_lines
 from .part_1.part_1 import Part1
 from .part_2.part_2 import Part2
 
 
 def main():
-    input_file = read_input_file()
-    input_file = read_input_file("test_input.txt")
+    input_file = read_file_lines()
+    input_file = read_file_lines("test_input.txt")
 
     # part 1
     p1 = Part1(input_file)

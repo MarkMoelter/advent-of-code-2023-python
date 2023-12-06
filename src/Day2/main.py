@@ -1,11 +1,11 @@
 import logging
 
 from Day2.Part1.part1 import Part1
-from read_file import read_input_file
+from read_file import read_file_lines
 
 
 def main():
-    input_file = read_input_file()
+    input_file = read_file_lines()
     # part 1
     print(Part1(input_file).add_game_ids_of_possible_games((12, 13, 14)))
     # part 2

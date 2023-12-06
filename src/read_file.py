@@ -1,7 +1,6 @@
-def read_input_file(filename='input.txt') -> list[str]:
+def read_file_lines(filename: str = 'input.txt') -> list[str]:
     """
     Read the lines of the input file and remove newlines.
-
     :return: A list containing the lines of the file as the elements.
     """
     with open(filename, 'r') as f:

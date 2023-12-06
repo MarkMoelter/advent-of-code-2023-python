@@ -2,12 +2,12 @@ import logging
 from pprint import pprint
 
 from Day3.Part1.part1 import Part1
-from read_file import read_input_file
+from read_file import read_file_lines
 
 
 def main():
     # part 1
-    input_file = read_input_file("input.txt")
+    input_file = read_file_lines("input.txt")
     p1 = Part1(input_file)
     pprint(p1.symbols[0:10])
     pprint(p1.numbers[0:10])

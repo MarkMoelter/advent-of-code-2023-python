@@ -4,8 +4,8 @@ logger = logging.getLogger(__name__)
 
 
 class Part1:
-    def __init__(self, input_input: list[str]) -> None:
-        self.input_input = input_input
+    def __init__(self, input_file: str) -> None:
+        self.input_file = input_file
 
     @staticmethod
     def map_src_to_dest(input_val: int, transformation_map: list[tuple[int, int, int]]) -> int:
