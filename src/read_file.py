@@ -5,3 +5,14 @@ def read_file_lines(filename: str = 'input.txt') -> list[str]:
     """
     with open(filename, 'r') as f:
         return [ele.strip('\n') for ele in f.readlines()]
+
+
+def read_file(filename: str = 'input.txt') -> str:
+    """
+    Read the input file.
+    :param filename: The name of the file.
+    :return: The file as a string.
+    """
+
+    with open(filename, 'r') as f:
+        return f.read()
