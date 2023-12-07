@@ -12,6 +12,9 @@ def main():
     # part 1
     p1 = Part1(input_file)
 
+    # Only need to check the first half of the time, each half is a mirror of each other.
+    # Check number of times you will beat record, dfs where end is > than the current record. -> Recursion
+
     # part 2
     p2 = Part2(input_file)
 
