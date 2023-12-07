@@ -56,7 +56,7 @@ class Part1:
         :param transformation_map: The map between source and destination.
         :return: The destination position that it maps to.
         """
-        for src, dest, _range in transformation_map:
+        for dest, src, _range in transformation_map:
             if input_val in range(src, src + _range):
                 return input_val - src + dest
         return input_val
