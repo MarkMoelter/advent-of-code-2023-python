@@ -1,5 +1,7 @@
 import logging
 
+from tqdm import tqdm
+
 from Day5.part_1 import Part1
 
 logger = logging.getLogger(__name__)
@@ -13,24 +15,23 @@ class Part2(Part1):
     def seeds(self) -> list[range]:
         seed_values = super().seeds
 
-        is_starting_number = True
         starting_number = 0
         seed_ranges = []
-        for value in seed_values:
-            if is_starting_number:
+        for i, value in enumerate(seed_values):
+            if i % 2 == 0:
                 starting_number = value
-                is_starting_number = False
             else:
                 seed_ranges.append(range(starting_number, starting_number + value))
-                is_starting_number = True
 
         return seed_ranges
 
     def solution(self) -> int:
         sol = 0
+        tseeds = tqdm(self.seeds, "Ranges", leave=True, position=0)
 
-        for r in self.seeds:
-            for i in r:
+        for r in tseeds:
+            tr = tqdm(r, f"Range {r} seeds ", leave=True, position=0)
+            for i in tr:
                 loc_val = self.transform_seed(i, 0)
 
                 # Add first value to seed
