@@ -75,7 +75,7 @@ class Part1:
         logger.debug(f"Value: {val}; Using map: {self.int_to_map[map_number]}; Transformed value: {transformed_val}")
         return self.transform_seed(transformed_val, map_number + 1)
 
-    def solution(self) -> dict[int, int]:
+    def solution(self) -> int:
         """
         Solution to the first problem
         :return: The lowest location that corresponds to any of the initial seeds.
@@ -84,4 +84,4 @@ class Part1:
         for seed in self._seeds:
             sol[seed] = self.transform_seed(seed, 0)
 
-        return sol
+        return min(sol.values())
