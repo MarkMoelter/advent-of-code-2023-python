@@ -32,7 +32,7 @@ class Part1:
         return list(map(int, re.search(pattern, self.input_file).group().split()))
 
     @property
-    def maps(self) -> dict[str, list[tuple[int, int, int]]]:
+    def maps(self) -> dict[str, list[tuple[int, ...]]]:
 
         # Split each map based on the double newlines found at the end of each map
         split_maps = re.split(r"\n\n", self.input_file)
