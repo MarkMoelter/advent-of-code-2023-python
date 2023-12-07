@@ -26,12 +26,18 @@ class Part2(Part1):
         return seed_ranges
 
     def solution(self) -> int:
-        sol = 0
-        tseeds = tqdm(self.seeds, "Ranges", leave=True, position=0)
+        if self.load("state.txt"):
+            load_idx, sol = self.load("state.txt")
+            logger.info(f"Using saved values: {load_idx} {sol}")
+        else:
+            load_idx = -1
+            sol = 0
+        logger.debug(f"{load_idx} {sol}")
 
-        for r in tseeds:
-            tr = tqdm(r, f"Range {r} seeds ", leave=True, position=0)
-            for i in tr:
+        for idx, r in enumerate(self.seeds):
+            if load_idx >= idx:
+                continue
+            for i in tqdm(r, f"Calculate seed locations", leave=True, position=0):
                 loc_val = self.transform_seed(i, 0)
 
                 # Add first value to seed
@@ -40,4 +46,17 @@ class Part2(Part1):
                 # Add new min value if found
                 elif sol > loc_val:
                     sol = loc_val
+
+            self.save("state.txt", idx, sol)
+            logger.info(f"Saved Values: {self.load("state.txt")}")
         return sol
+
+    @staticmethod
+    def save(filename: str, idx: int, current_smallest: int):
+        with open(filename, "w+") as f:
+            f.write(f"{idx} {current_smallest}")
+
+    @staticmethod
+    def load(filename: str) -> tuple[int, ...]:
+        with open(filename, "r") as f:
+            return tuple(map(int, f.read().split()))
