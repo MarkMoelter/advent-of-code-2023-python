@@ -9,7 +9,7 @@ def main():
 
     # part 1
     p1 = Part1(input_file)
-    print(p1.seeds)
+    print(p1.maps)
 
     # part 2
     # p2 = Part2(input_file)
