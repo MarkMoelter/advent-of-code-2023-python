@@ -1,8 +1,8 @@
 import logging
 
 from read_file import read_file_lines
-from template.part_1 import Part1
-from template.part_2 import Part2
+from Day7.part_1 import Part1
+from Day7.part_2 import Part2
 
 
 def main():
