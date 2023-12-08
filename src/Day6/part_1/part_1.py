@@ -31,19 +31,10 @@ class Part1:
         :param race: The race made up of the time and the current record.
         :return: The combinations that are faster than the current record
         """
-        faster_combos = 0
         time, record = race
-
         # Only deal with the first half of the time. It repeats in the second half.
         for i in range(time // 2 + 1):
+
+            # Use the first idx where i > record to calculate the combos that win
             if (time - i) * i > record:
-                faster_combos += 1
-
-        # Multiply the result by 2 to account for only using the first half
-        faster_combos *= 2
-
-        # Even numbers will have 1 extra combo after multiplying. Subtract 1 to account for
-        if time % 2 == 0:
-            faster_combos -= 1
-
-        return faster_combos
+                return time + 1 - (i * 2)
