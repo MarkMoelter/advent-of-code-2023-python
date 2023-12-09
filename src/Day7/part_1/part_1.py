@@ -1,7 +1,7 @@
 import logging
+from collections import Counter
 
 from .hand_type import HandType
-from collections import Counter
 
 logger = logging.getLogger(__name__)
 
@@ -61,7 +61,10 @@ class Part1:
         Sort hands into their respective hand types.
         :return: A dict of hand types and their corresponding hands.
         """
-        pass
+        out = {hand_type: [] for hand_type in HandType}
+        for hand, _ in self._hands:
+            out[self.get_hand_type(hand)].append(hand)
+        return out
 
     def sort_hands_by_strength(self, hands: list[tuple[str, int]]) -> list[tuple[str, int]]:
         """
