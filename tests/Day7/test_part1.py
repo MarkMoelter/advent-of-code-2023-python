@@ -57,3 +57,10 @@ class TestPart1(unittest.TestCase):
         result = self.p1.get_hand_type(hand)
 
         self.assertEqual(HandType.HIGH_CARD, result)
+
+    def test_sort_hands_by_type_returns_one_vali_in_high_card_list(self):
+        hand_bet = "AKQJ9 7"
+
+        result = Part1([hand_bet]).sort_hands_by_type()
+
+        self.assertEqual(1, len(result[HandType.HIGH_CARD]))
