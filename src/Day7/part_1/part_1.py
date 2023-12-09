@@ -1,6 +1,7 @@
 import logging
 
 from .hand_type import HandType
+from collections import Counter
 
 logger = logging.getLogger(__name__)
 
@@ -24,7 +25,7 @@ class Part1:
         return out
 
     @staticmethod
-    def get_hand_type(hand) -> HandType:
+    def get_hand_type(hand: str) -> HandType:
         """
         Get the type of the hand.
 
@@ -40,10 +41,20 @@ class Part1:
         :param hand: Consists of 5 cards.
         :return: The type of the hand.
         """
-        # TODO: Use sets to distinguish between hand strengths
-        # TODO: Some way to distinguish between full house and four of a kind. Both have 2 values in the set
-
-        return HandType.FIVE_OF_A_KIND
+        char_to_count = Counter(hand)
+        if 5 in char_to_count.values():
+            return HandType.FIVE_OF_A_KIND
+        if 4 in char_to_count.values():
+            return HandType.FOUR_OF_A_KIND
+        if 3 in char_to_count.values() and 2 in char_to_count.values():
+            return HandType.FULL_HOUSE
+        if 3 in char_to_count.values():
+            return HandType.THREE_OF_A_KIND
+        if len(set(hand)) == 3:
+            return HandType.TWO_PAIR
+        if len(set(hand)) == 4:
+            return HandType.ONE_PAIR
+        return HandType.HIGH_CARD
 
     def sort_hands_by_type(self) -> dict[HandType, list[tuple[str, int]]]:
         """
