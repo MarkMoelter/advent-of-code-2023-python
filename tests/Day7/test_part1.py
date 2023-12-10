@@ -1,6 +1,6 @@
 import unittest
 
-from src.Day7.part_1 import HandType, Part1
+from src.Day7.part_1 import Part1, Hand, HandType
 from src.read_file import read_file_lines
 
 
@@ -9,22 +9,21 @@ class TestPart1(unittest.TestCase):
         self.p1 = Part1(
             read_file_lines(r"C:\Users\marke\PycharmProjects\advent-of-code-2023-python\src\Day7\test_input.txt"))
 
-    def test_get_hand_type_given_AAAAA_returns_five_of_a_kind_enum(self):
-        hand = "AAAAA"
+    def test_hands_prop_test_input_returns_list(self):
+        result = self.p1.hands
 
-        result = self.p1.get_hand_type(hand)
+        self.assertIsInstance(result, list)
 
-        self.assertEqual(HandType.FIVE_OF_A_KIND, result)
+    def test_hands_prop_test_input_returns_list_of_hand(self):
+        result = self.p1.hands
 
-    def test_get_hand_type_given_AAAAK_returns_four_of_a_kind_enum(self):
-        hand = "AAAAK"
+        for hand in result:
+            self.assertIsInstance(hand, Hand)
 
-        result = self.p1.get_hand_type(hand)
+    def test_hand_prop_test_input_returns_len_5(self):
+        result = self.p1.hands
 
-        self.assertEqual(HandType.FOUR_OF_A_KIND, result)
-
-    def test_get_hand_type_given_AAAKK_returns_full_house_enum(self):
-        hand = "AAAKK"
+        self.assertEqual(5, len(result))
 
         result = self.p1.get_hand_type(hand)
 
