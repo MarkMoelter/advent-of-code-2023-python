@@ -35,16 +35,17 @@ class Part1:
             out[hand.hand_type].append(hand)
         return out
 
-    def sort_by_strength(self) -> None:
+    def sort_by_strength(self) -> dict[HandType, list[Hand]]:
         """
         Sort the list of hands by their strength from worst to best.
         :return: The list of hands sorted by their strength.
         """
-
-        for hand_type, hand_list in self._types_to_hand_list:
+        out = {}
+        for hand_type, hand_list in self._types_to_hand_list.items():
             decorated = [(hand.cards_as_nums, hand) for hand in hand_list]
             decorated.sort()
-            self._types_to_hand_list[hand_type] = [hand for (cards, hand) in decorated]
+            out[hand_type] = [hand for (cards, hand) in decorated]
+        return out
 
     def sorted_hands(self) -> list[Hand]:
         """
@@ -53,7 +54,7 @@ class Part1:
         """
         out = []
         for hand_type in HandType:
-            out.extend(self._types_to_hand_list[hand_type])
+            out.extend(self.sort_by_strength()[hand_type])
         return out
 
     def solution(self) -> int:
