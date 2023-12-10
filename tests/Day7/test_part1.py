@@ -57,3 +57,7 @@ class TestPart1(unittest.TestCase):
 
         self.assertListEqual(["33263", "A52AA"], result)
 
+    def test_sorted_hands_test_input_returns_expected_order(self):
+        result = [hand.cards for hand in self.p1.sorted_hands()]
+
+        self.assertListEqual(["32T3K", "KTJJT", "KK677", "T55J5", "QQQJA"], result)
