@@ -61,3 +61,8 @@ class TestPart1(unittest.TestCase):
         result = [hand.cards for hand in self.p1.sorted_hands()]
 
         self.assertListEqual(["32T3K", "KTJJT", "KK677", "T55J5", "QQQJA"], result)
+
+    def test_solution_returns_6440(self):
+        result = self.p1.solution()
+
+        self.assertEqual(6440, result)
