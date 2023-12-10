@@ -25,23 +25,25 @@ class TestPart1(unittest.TestCase):
 
         self.assertEqual(5, len(result))
 
-        result = self.p1.get_hand_type(hand)
+    def test_types_to_hand_list_returns_dict(self):
+        result = self.p1.types_to_hand_list
 
-        self.assertEqual(HandType.FULL_HOUSE, result)
+        self.assertIsInstance(result, dict)
 
-    def test_get_hand_type_given_AAAKQ_returns_three_of_a_kind_enum(self):
-        hand = "AAAKQ"
+    def test_types_to_hand_list_returns_2_three_of_a_kind_hands(self):
+        result = self.p1.types_to_hand_list
 
-        result = self.p1.get_hand_type(hand)
+        self.assertEqual(2, len(result[HandType.THREE_OF_A_KIND]))
 
-        self.assertEqual(HandType.THREE_OF_A_KIND, result)
+    def test_types_to_hand_list_returns_2_two_pair_hands(self):
+        result = self.p1.types_to_hand_list
 
-    def test_get_hand_type_given_AAKKQ_returns_two_pair_enum(self):
-        hand = "AAKKQ"
+        self.assertEqual(2, len(result[HandType.TWO_PAIR]))
 
-        result = self.p1.get_hand_type(hand)
+    def test_types_to_hand_list_returns_1_one_pair_hand(self):
+        result = self.p1.types_to_hand_list
 
-        self.assertEqual(HandType.TWO_PAIR, result)
+        self.assertEqual(1, len(result[HandType.ONE_PAIR]))
 
     def test_get_hand_type_given_AAKQJ_returns_one_pair_enum(self):
         hand = "AAKQJ"
