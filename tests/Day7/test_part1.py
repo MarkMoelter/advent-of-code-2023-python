@@ -45,23 +45,15 @@ class TestPart1(unittest.TestCase):
 
         self.assertEqual(1, len(result[HandType.ONE_PAIR]))
 
-    def test_get_hand_type_given_AAKQJ_returns_one_pair_enum(self):
-        hand = "AAKQJ"
+    def test_sort_by_strength_returns_T55J5_QQQJA_in_that_order(self):
+        result = [hand.cards for hand in self.p1.sort_by_strength()[HandType.THREE_OF_A_KIND]]
 
-        result = self.p1.get_hand_type(hand)
+        self.assertListEqual(["T55J5", "QQQJA"], result)
 
-        self.assertEqual(HandType.ONE_PAIR, result)
+    def test_sort_by_strength_input_A52AA_and_33263_returns_33263_then_A52AA(self):
+        p1 = Part1(["A52AA 1", "33263 2"])
 
-    def test_get_hand_type_given_AKQJ9_returns_high_card_enum(self):
-        hand = "AKQJ9"
+        result = [hand.cards for hand in p1.sort_by_strength()[HandType.THREE_OF_A_KIND]]
 
-        result = self.p1.get_hand_type(hand)
+        self.assertListEqual(["33263", "A52AA"], result)
 
-        self.assertEqual(HandType.HIGH_CARD, result)
-
-    def test_sort_hands_by_type_returns_one_vali_in_high_card_list(self):
-        hand_bet = "AKQJ9 7"
-
-        result = Part1([hand_bet]).sort_hands_by_type()
-
-        self.assertEqual(1, len(result[HandType.HIGH_CARD]))
