@@ -17,7 +17,7 @@ class TestPart1(unittest.TestCase):
         self.assertDictEqual(result, expected | result)
 
     def test_solution_test_input_returns_2(self):
-        result = self.p1.solution()
+        result = self.p1.solution("AAA", "ZZZ")
 
         self.assertEqual(2, result)
 
@@ -28,6 +28,6 @@ class TestPart1(unittest.TestCase):
                       "BBB = (AAA, ZZZ)",
                       "ZZZ = (ZZZ, ZZZ)"]
 
-        result = Part1(input_list).solution()
+        result = Part1(input_list).solution("AAA", "ZZZ")
 
         self.assertEqual(6, result)

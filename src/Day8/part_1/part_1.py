@@ -26,27 +26,29 @@ class Part1:
 
         return out
 
-    def solution(self) -> int:
+    def solution(self, start_node: str, end_node: str) -> int:
         """
         Count the number of iterations needed for the turing machine to stop (reaches ZZZ).
+        :param start_node: The node to start at.
+        :param end_node: The node to end at.
         :return: The number of iterations before it stops.
         """
         count = 0
-        current_node = "AAA"
-        while current_node != "ZZZ":
+        current_node = start_node
+        while current_node != end_node:
             for l_or_r in self.instructions:
-
-                # Break out of for loop prematurely if ZZZ is found
-                if current_node == "ZZZ":
-                    break
+                count += 1
 
                 # Set the current node
                 left, right = self._network[current_node]
+
                 if l_or_r == "L":
                     current_node = left
                 else:
                     current_node = right
 
-                count += 1
+                # Break out of for loop prematurely if end node is found
+                if current_node == end_node:
+                    break
 
         return count
