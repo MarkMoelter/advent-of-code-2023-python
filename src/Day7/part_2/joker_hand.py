@@ -34,7 +34,7 @@ class JokerHand(Hand):
             if count > max_count:
                 max_card, max_count = card, count
 
-        hand_count[max_card] += hand_count[self.joker_value]
+        hand_count[max_card] += hand_count.pop(self.joker_value)
 
         if 5 in hand_count.values():
             return HandType.FIVE_OF_A_KIND
@@ -44,11 +44,7 @@ class JokerHand(Hand):
             return HandType.FULL_HOUSE
         if 3 in hand_count.values():
             return HandType.THREE_OF_A_KIND
-        if len(set(self.cards)) == 3:
-            return HandType.TWO_PAIR
-        if len(set(self.cards)) == 4:
-            return HandType.ONE_PAIR
-        return HandType.HIGH_CARD
+        return HandType.ONE_PAIR
 
     def __str__(self) -> str:
         return f"{super().__str__()}; {self.letter_to_int}, {self._cards_as_nums}"
