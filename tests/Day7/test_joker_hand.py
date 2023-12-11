@@ -32,3 +32,17 @@ class TestJokerHand(unittest.TestCase):
         result = JokerHand(hand)
 
         self.assertEqual(HandType.FOUR_OF_A_KIND, result.hand_type)
+
+    def test_joker_value_is_1(self):
+        hand = "JJJJK"
+
+        result = JokerHand(hand)
+
+        self.assertEqual(1, result.joker_value)
+
+    def test_cards_as_nums_JJJJK_returns_1_1_1_1_13(self):
+        hand = "JJJJK"
+
+        result = JokerHand(hand)
+
+        self.assertListEqual([1, 1, 1, 1, 13], result.cards_as_nums)
