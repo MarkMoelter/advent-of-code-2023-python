@@ -15,6 +15,7 @@ def main():
 
     # part 2
     p2 = Part2(input_file)
+    print(p2.solution())
 
 
 if __name__ == '__main__':
