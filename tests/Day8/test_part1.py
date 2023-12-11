@@ -15,3 +15,19 @@ class TestPart1(unittest.TestCase):
         expected = {"AAA": ("BBB", "CCC")}
 
         self.assertDictEqual(result, expected | result)
+
+    def test_solution_test_input_returns_2(self):
+        result = self.p1.solution()
+
+        self.assertEqual(2, result)
+
+    def test_solution_additional_test_input_returns_6(self):
+        input_list = ["LLR",
+                      "",
+                      "AAA = (BBB, BBB)",
+                      "BBB = (AAA, ZZZ)",
+                      "ZZZ = (ZZZ, ZZZ)"]
+
+        result = Part1(input_list).solution()
+
+        self.assertEqual(6, result)

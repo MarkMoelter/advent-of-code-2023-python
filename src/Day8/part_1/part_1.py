@@ -25,3 +25,28 @@ class Part1:
             out[node_left_right[0]] = node_left_right[1], node_left_right[2]
 
         return out
+
+    def solution(self) -> int:
+        """
+        Count the number of iterations needed for the turing machine to stop (reaches ZZZ).
+        :return: The number of iterations before it stops.
+        """
+        count = 0
+        current_node = "AAA"
+        while current_node != "ZZZ":
+            for l_or_r in self.instructions:
+
+                # Break out of for loop prematurely if ZZZ is found
+                if current_node == "ZZZ":
+                    break
+
+                # Set the current node
+                left, right = self._network[current_node]
+                if l_or_r == "L":
+                    current_node = left
+                else:
+                    current_node = right
+
+                count += 1
+
+        return count
