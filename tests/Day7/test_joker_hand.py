@@ -33,6 +33,27 @@ class TestJokerHand(unittest.TestCase):
 
         self.assertEqual(HandType.FOUR_OF_A_KIND, result.hand_type)
 
+    def test_hand_type_KT2JT_returns_three_of_a_kind(self):
+        hand = "KT2JT"
+
+        result = JokerHand(hand)
+
+        self.assertEqual(HandType.THREE_OF_A_KIND, result.hand_type)
+
+    def test_hand_type_AKQJ3_returns_one_pair(self):
+        hand = "AKQJ3"
+
+        result = JokerHand(hand)
+
+        self.assertEqual(HandType.ONE_PAIR, result.hand_type)
+
+    def test_hand_type_JJJJJ_returns_five_of_a_kind(self):
+        hand = "JJJJJ"
+
+        result = JokerHand(hand)
+
+        self.assertEqual(HandType.FIVE_OF_A_KIND, result.hand_type)
+
     def test_joker_value_is_1(self):
         hand = "JJJJK"
 
