@@ -7,6 +7,7 @@ class Hand:
     def __init__(self, cards: str, bid: int = 1) -> None:
         self.cards = cards
         self.bid = bid
+        self.letter_to_int = {"T": 10, "J": 11, "Q": 12, "K": 13, "A": 14}
         self._cards_as_nums = self.cards_as_nums
         self._hand_type = self.hand_type
 
@@ -16,13 +17,10 @@ class Hand:
         Convert all alphabetical cards to their corresponding numerical value.
         :return: A list of cards with corresponding numbers in the place of letters.
         """
-
-        letter_to_int = {"T": 10, "J": 11, "Q": 12, "K": 13, "A": 14}
-
         out = []
         for card in self.cards:
             if card.isalpha():
-                out.append(letter_to_int[card])
+                out.append(self.letter_to_int[card])
             else:
                 out.append(int(card))
 
@@ -44,7 +42,7 @@ class Hand:
         - High card
         :return: The type of the hand.
         """
-        char_to_count = Counter(self.cards)
+        char_to_count = Counter(self._cards_as_nums)
         if 5 in char_to_count.values():
             return HandType.FIVE_OF_A_KIND
         if 4 in char_to_count.values():
