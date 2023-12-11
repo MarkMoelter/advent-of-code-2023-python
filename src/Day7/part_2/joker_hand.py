@@ -11,6 +11,10 @@ class JokerHand(Hand):
 
     @property
     def cards_as_nums(self) -> list[int]:
+        """
+        Convert the hand to a list of integers corresponding the strength of the card.
+        :return: A list representing the cards as strengths.
+        """
         return [self.joker_value
                 if card == 11
                 else card
@@ -19,16 +23,30 @@ class JokerHand(Hand):
 
     @property
     def hand_type(self) -> HandType:
+        """
+        Get the type of the hand.
+        If there is not a joker in the hand, will return part1 implementation.
+
+        Caveats:
+
+        - If there is a joker in the hand, cannot return high card or two pair.
+        - It will jump from high card to one pair or jump straight to three of a kind for multiple jokers.
+
+        :return: The type of the hand.
+        """
+        # If no joker
         if "J" not in self.cards:
             return super().hand_type
+
+        # Edge case as loop ignores joker
         if self.cards == "JJJJJ":
             return HandType.FIVE_OF_A_KIND
 
         hand_count = Counter(self._cards_as_nums)
-
-        # Get the card with the highest count
+        # Get the card with the highest count; If count tie, take stronger card
         max_card, max_count = 0, 0
         for card, count in hand_count.items():
+            # Ignore Jokers
             if card == self.joker_value:
                 continue
             if count > max_count:
