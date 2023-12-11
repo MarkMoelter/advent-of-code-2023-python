@@ -56,3 +56,6 @@ class Hand:
         if len(set(self.cards)) == 4:
             return HandType.ONE_PAIR
         return HandType.HIGH_CARD
+
+    def __str__(self) -> str:
+        return f"Hand({self.cards}, {self.bid}, {self.hand_type})"
