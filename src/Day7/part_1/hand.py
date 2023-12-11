@@ -58,4 +58,4 @@ class Hand:
         return HandType.HIGH_CARD
 
     def __str__(self) -> str:
-        return f"Hand({self.cards}, {self.bid}, {self.hand_type})"
+        return f"{self.__class__}({self.cards}, {self.bid}, {self.hand_type})"
