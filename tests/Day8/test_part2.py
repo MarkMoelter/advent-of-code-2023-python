@@ -10,7 +10,7 @@ class TestPart1(unittest.TestCase):
         self.p2 = Part2(
             read_file_lines(file_path))
 
-    def test_solution_test_input_returns_6(self):
-        result = self.p2.solution("A", "Z")
+    def test_naive_solution_test_input_returns_6(self):
+        result = self.p2.naive_solution("A", "Z")
 
         self.assertEqual(6, result)
