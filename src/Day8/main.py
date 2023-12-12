@@ -11,11 +11,11 @@ def main():
 
     # part 1
     p1 = Part1(input_file)
-    print(p1.solution())
+    print(p1.solution("AAA", "ZZZ"))
 
     # part 2
     p2 = Part2(input_file)
-    # print(p2.solution())
+    print(p2.lcm_solution("A", "Z"))
 
 
 if __name__ == '__main__':
