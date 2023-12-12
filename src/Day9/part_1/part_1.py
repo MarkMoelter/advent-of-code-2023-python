@@ -16,20 +16,29 @@ class Part1:
 
         return out
 
-    def forecast_next_value(self, sequence: list[int]) -> int:
+    def sequence_history(self, sequence: list[int]) -> dict[int, list[int]]:
+        """
+        Extrapolate the history of the sequence starting from the end.
+        Reverses the sequence to avoid getting all values in the sequence, using only the required data.
+        :param sequence: The sequence to extract the history from.
+        :return:A dictionary with a list per sequence layer.
+        """
+
+    def forecast_next_value(self, sequence_history: dict[int, list[int]]) -> int:
         """
         Forecast the next value in the sequence.
-        :param sequence: The sequence to forecast the next value in.
+        :param sequence_history: The history of the sequence as a dictionary with a list per sequence layer.
         :return: The next value in the sequence.
         """
 
     def solution(self) -> int:
         """
-        Get the sum of the next value in each sequence.
+        Get the sum of the forecasted value in each sequence.
         :return: The sum of the forecasted values.
         """
         out = 0
         for seq in self._sequences:
-            out += self.forecast_next_value(seq)
+            history = self.sequence_history(seq)
+            out += self.forecast_next_value(history)
 
         return out
