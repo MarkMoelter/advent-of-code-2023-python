@@ -28,7 +28,7 @@ class TestPart1(unittest.TestCase):
             for val in sequence:  # int
                 self.assertIsInstance(val, int)
 
-    def test_sequences_test_input_returns_correct_list(self):
+    def test_sequences_test_input_returns_expected_list(self):
         result = self.p1.sequences
 
         expected = [
@@ -38,3 +38,69 @@ class TestPart1(unittest.TestCase):
         ]
 
         self.assertListEqual(expected, result)
+
+    def test_sequence_history_test_input_first_sequence_returns_dict(self):
+        sequence = self.p1.sequences[0]
+
+        result = self.p1.sequence_history(sequence)
+
+        self.assertIsInstance(result, dict)
+
+    def test_sequence_history_test_input_first_sequence_returns_expected_history(self):
+        sequence = self.p1.sequences[0]
+
+        result = self.p1.sequence_history(sequence)
+
+        expected = {0: [3, 3]}
+
+        self.assertDictEqual(expected, result)
+
+    def test_forecast_next_value_test_input_first_sequence_returns_21(self):
+        sequence = self.p1.sequences[0]
+
+        history = self.p1.sequence_history(sequence)
+
+        result = self.p1.forecast_next_value(history)
+
+        self.assertEqual(21, result)
+
+    def test_sequence_history_test_input_second_sequence_returns_expected_history(self):
+        sequence = self.p1.sequences[1]
+
+        result = self.p1.sequence_history(sequence)
+
+        expected = {0: [6, 5, 4], 1: [1, 1]}
+
+        self.assertDictEqual(expected, result)
+
+    def test_forecast_next_value_test_input_second_sequence_returns_28(self):
+        sequence = self.p1.sequences[1]
+
+        history = self.p1.sequence_history(sequence)
+
+        result = self.p1.forecast_next_value(history)
+
+        self.assertEqual(28, result)
+
+    def test_sequence_history_test_input_third_sequence_returns_expected_history(self):
+        sequence = self.p1.sequences[2]
+
+        result = self.p1.sequence_history(sequence)
+
+        expected = {0: [7, 6, 5], 1: [1, 1]}
+
+        self.assertDictEqual(expected, result)
+
+    def test_forecast_next_value_test_input_third_sequence_returns_68(self):
+        sequence = self.p1.sequences[2]
+
+        history = self.p1.sequence_history(sequence)
+
+        result = self.p1.forecast_next_value(history)
+
+        self.assertEqual(68, result)
+
+    def test_solution_test_input_returns_114(self):
+        result = self.p1.solution()
+
+        self.assertEqual(114, result)
