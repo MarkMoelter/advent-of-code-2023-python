@@ -26,16 +26,19 @@ class Part1:
 
         return out
 
-    def solution(self, start_node: str, end_node: str) -> int:
+    def solution(self, start_node: str, end_node: str = None, end_node_suffix: str = None) -> int:
         """
         Count the number of iterations needed for the turing machine to stop (reaches ZZZ).
         :param start_node: The node to start at.
         :param end_node: The node to end at.
+        :param end_node_suffix: The suffix that the end node should contain.
         :return: The number of iterations before it stops.
         """
         count = 0
         current_node = start_node
-        while current_node != end_node:
+        end_condition = True
+
+        while end_condition:
             for l_or_r in self.instructions:
                 count += 1
 
@@ -48,7 +51,8 @@ class Part1:
                     current_node = right
 
                 # Break out of for loop prematurely if end node is found
-                if current_node == end_node:
+                if current_node == end_node or (end_node_suffix is not None and current_node.endswith(end_node_suffix)):
+                    end_condition = False
                     break
 
         return count
