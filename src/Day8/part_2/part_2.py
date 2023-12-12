@@ -1,4 +1,5 @@
 import logging
+import math
 
 from src.Day8.part_1 import Part1
 
@@ -51,3 +52,23 @@ class Part2(Part1):
                     break
 
         return count
+
+    def lcm_solution(self, start_node_suffix: str, end_node_suffix: str) -> int:
+        """
+        Using the assumption that each A-Z path will loop in a cycle,
+        we can find the iteration count for each start_node to reach the end_node and find the least common multiple
+        for each path. Does not require brute forcing and least common multiple can be found mathematically.
+
+        Count the number of iterations needed for the turing machine to stop (reaches ZZZ).
+        :param start_node_suffix: The suffix that each start node has.
+        :param end_node_suffix: The suffix that each end node has.
+        :return: The number of iterations before it stops.
+        """
+
+        node_counts = []
+        start_nodes = [node for node in self.network if node.endswith(start_node_suffix)]
+
+        for node in start_nodes:
+            node_counts.append(super().solution(node, end_node_suffix=end_node_suffix))
+
+        return math.lcm(*node_counts)
