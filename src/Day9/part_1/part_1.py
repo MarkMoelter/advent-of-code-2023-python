@@ -66,9 +66,4 @@ class Part1:
         Get the sum of the forecasted value in each sequence.
         :return: The sum of the forecasted values.
         """
-        out = 0
-        for seq in self._sequences:
-            history = self.sequence_history(seq)
-            out += self.forecast_next_value(history)
-
-        return out
+        return sum([self.forecast_next_value(seq) for seq in self._sequences])
