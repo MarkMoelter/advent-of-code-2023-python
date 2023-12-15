@@ -60,7 +60,7 @@ class TestPart1(unittest.TestCase):
 
         result = self.p1.sequence_history({0: sequence[::-1]})
 
-        expected = {0: sequence[::-1], 1: [6, 5, 4], 2: [1, 1]}
+        expected = {0: sequence[::-1], 1: [6, 5, 4, 3, 2], 2: [1, 1]}
 
         self.assertDictEqual(expected, result)
 
@@ -69,7 +69,7 @@ class TestPart1(unittest.TestCase):
 
         result = self.p1.sequence_history({0: sequence[::-1]})
 
-        expected = {0: sequence[::-1], 1: [7, 6, 5], 2: [1, 1]}
+        expected = {0: sequence[::-1], 1: [15, 9, 5, 3, 3], 2: [6, 4, 2, 0], 3: [2, 2]}
 
         self.assertDictEqual(expected, result)
 
@@ -80,12 +80,12 @@ class TestPart1(unittest.TestCase):
 
         self.assertIsInstance(result, int)
 
-    def test_forecast_next_value_test_input_first_sequence_returns_21(self):
+    def test_forecast_next_value_test_input_first_sequence_returns_18(self):
         sequence = self.p1.sequences[0]
 
         result = self.p1.forecast_next_value(sequence)
 
-        self.assertEqual(21, result)
+        self.assertEqual(18, result)
 
     def test_forecast_next_value_test_input_second_sequence_returns_28(self):
         sequence = self.p1.sequences[1]
