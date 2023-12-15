@@ -105,3 +105,16 @@ class TestPart1(unittest.TestCase):
         result = self.p1.solution()
 
         self.assertEqual(114, result)
+
+    def test_forecast_next_value_with_negative_input_returns_5(self):
+        result = self.p1.forecast_next_value(
+            [-3, -7, -11, -15, -19, -23, -27, -31, -35, -39, -43, -47, -51, -55, -59, -63, -67, -71, -75, -79, -83])
+
+        self.assertEqual(-87, result)
+
+    def test_forecast_next_value_with_negative_input_returns_neg_162(self):
+        result = self.p1.forecast_next_value(
+            [27, 38, 47, 54, 59, 62, 63, 62, 59, 54, 47, 38, 27, 14, - 1, - 18, - 37, - 58, - 81, - 106, - 133
+             ])
+
+        self.assertEqual(-162, result)
