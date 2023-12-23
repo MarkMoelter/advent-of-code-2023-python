@@ -15,3 +15,8 @@ class TestPart1(unittest.TestCase):
         result = self.p1.solution()
 
         self.assertEqual(8, result)
+
+    def test_find_start_test_input_returns_0_2(self):
+        result = self.p1.find_start()
+
+        self.assertTupleEqual((0, 2), result)
